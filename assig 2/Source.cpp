@@ -1,7 +1,21 @@
 #include<GL\glut.h>
 #include<iostream>
+#include <vector>
+struct point {
+	int   x,y;
+	point() {};
+
+	point(int init_val, int init_id)
+	{
+		x = init_val;
+		y = init_id;
+	}
+
+};
+//typedef point int[2];
 int size[]={640,480}; 
-GLfloat v[4][2];
+std::vector<point> points;
+//GLfloat v[4][2];
 GLint  obj[5];
 int static count=0;
 bool handle=false;
@@ -38,9 +52,9 @@ void click_handle(int button, int state, int x, int y) {
 		//ver_handle *a;
 		//a = new ver_handle;
 
-		
-		v[count][0] = x;
-		v[count][1] =size[1]- y;
+		points.push_back(point(x, size[1] - y));
+		//v[count][0] = x;
+		//v[count][1] =size[1]- y;
 		handle = true;
 		count++;
 		
@@ -61,8 +75,8 @@ void render() {
 	glBegin(GL_POINTS);
 
 			glColor3f(0, 0, 1);
-	 for(int i=0;i<count;i++)
-		 glVertex2fv(v[i]);
+			for (int i = 0; i < points.size(); i++)
+				glVertex2i(points[i].x, points[i].y);
 
 
 
