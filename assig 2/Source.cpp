@@ -70,7 +70,7 @@ void init() {
 
 void render() {
 	glClear(GL_COLOR_BUFFER_BIT);
-			glPointSize(55);
+			glPointSize(5);
 	
 	glBegin(GL_POINTS);
 
@@ -81,7 +81,46 @@ void render() {
 
 
 	glEnd();
+//rectangle drawing
+	glBegin(GL_LINES);
 
+	glColor3f(1, 0, 1);
+	//if (points.size() % 2== 0)
+	for (int i = 0;( i+1) < points.size(); i = i + 2)
+
+	{
+		//drawing first line
+		glVertex2i(points[i].x, points[i].y);
+		glVertex2i(points[i + 1].x, points[i].y);
+		//second line
+		glVertex2i(points[i + 1].x, points[i].y);
+		glVertex2i(points[i+1].x, points[i+1].y);
+		//third line
+		glVertex2i(points[i + 1].x, points[i+1].y);
+		glVertex2i(points[i].x, points[i+1].y);
+		//fourth line
+		glVertex2i(points[i].x, points[i + 1].y);
+		glVertex2i(points[i].x, points[i].y);
+
+
+
+	}
+
+
+	glEnd();
+	
+	glBegin(GL_LINES);
+
+	glColor3f(0, 1, 1);
+	//if (points.size() % 2== 0)
+	for (int i = 0; (i + 1) < points.size(); i = i + 2)
+
+	{
+
+		glVertex2i(points[i].x, points[i].y);
+		glVertex2i(points[i + 1].x, points[i+1].y);
+	}
+		glEnd();
 	
 	glFlush();
 }
